@@ -1,0 +1,7 @@
+C:\Users\Factory\source\repos\ScopeCreate\ScopeCreate\bin\Debug\ScopeCreate.exe.config
+C:\Users\Factory\source\repos\ScopeCreate\ScopeCreate\bin\Debug\ScopeCreate.exe
+C:\Users\Factory\source\repos\ScopeCreate\ScopeCreate\bin\Debug\ScopeCreate.pdb
+C:\Users\Factory\source\repos\ScopeCreate\ScopeCreate\obj\Debug\ScopeCreate.csprojAssemblyReference.cache
+C:\Users\Factory\source\repos\ScopeCreate\ScopeCreate\obj\Debug\ScopeCreate.csproj.CoreCompileInputs.cache
+C:\Users\Factory\source\repos\ScopeCreate\ScopeCreate\obj\Debug\ScopeCreate.exe
+C:\Users\Factory\source\repos\ScopeCreate\ScopeCreate\obj\Debug\ScopeCreate.pdb

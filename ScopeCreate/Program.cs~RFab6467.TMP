@@ -1,0 +1,82 @@
+﻿using Microsoft.Office.Interop.Excel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
+
+namespace ScopeCreate
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Excel.Application xlApp = new Excel.Application();
+            Excel.Workbook xlWorkBook = xlApp.Workbooks.Open(@"C:\Users\Factory\Documents\scope\ControlesDegradesAvecDirections T2 2019 - Copie.xlsx");
+            Excel.Range oRng = null;
+
+            Excel.Worksheet worksheet1 = (xlWorkBook.Worksheets[1]);
+            Excel.Worksheet worksheet3 = (xlWorkBook.Worksheets[1]);
+            
+            worksheet1.Copy(worksheet3);
+            xlWorkBook.Worksheets[1].Columns["B"].Insert();
+            xlWorkBook.Worksheets[1].Columns["D"].Insert();
+            xlWorkBook.Worksheets[1].Columns["F"].Insert();
+            xlWorkBook.Worksheets[1].Columns["H"].Insert();
+            xlWorkBook.Worksheets[1].Columns["J"].Insert();
+            xlWorkBook.Worksheets[1].Columns["L"].Insert();
+            xlWorkBook.Worksheets[1].Columns["N"].Insert();
+            xlWorkBook.Worksheets[1].Columns["P"].Insert();
+
+            oRng = xlWorkBook.Worksheets[1].UsedRange;
+            oRng.Cells[4,2].Formula = "SI(ESTVIDE(A4);B3;A4)";
+
+
+
+
+
+            xlWorkBook.Worksheets[1].Cells["A2"].Value = "=1 + 1";
+            xlWorkBook.Worksheets[1].Cells["A3"].Value = "=3 * (2 - 8)";
+            xlWorkBook.Worksheets[1].Cells["A4"].Value = "=3 + ABS(B3)";
+            xlWorkBook.Worksheets[1].Cells["A5"].Value = "=B4 > 15";
+            xlWorkBook.Worksheets[1].Cells["A6"].Value = "=IF(B5, \"Hello world\", \"World hello\")";
+            xlWorkBook.Worksheets[1].Cells["A7"].Value = "=B6 & \" example\"";
+            xlWorkBook.Worksheets[1].Cells["A8"].Value = "=CODE(RIGHT(B7))";
+            xlWorkBook.Worksheets[1].Cells["A9"].Value = "=POWER(B8, 3) * 0.45%";
+            xlWorkBook.Worksheets[1].Cells["A10"].Value = "=SIGN(B9)";
+            xlWorkBook.Worksheets[1].Cells["A11"].Value = "=SUM(B2:B10)";
+
+            // Set text from first column as second row cell's formula.
+            int rowIndex = 1;
+            while (xlWorkBook.Worksheets[1].Cells[rowIndex, 0].ValueType != CellValueType.Null)
+                xlWorkBook.Worksheets[1].Cells[rowIndex, 1].Formula = xlWorkBook.Worksheets[1].Cells[rowIndex++, 0].StringValue;
+
+            // GemBox.Spreadsheet supports single Excel cell calculation, ...
+            worksheet.Cells["B2"].Calculate();
+
+            // ... Excel worksheet calculation,
+            worksheet.Calculate();
+
+            // ... and whole Excel file calculation.
+            worksheet.Parent.Calculate();
+
+
+
+
+
+
+
+
+
+
+
+
+            xlWorkBook.Saved = true; 
+            xlWorkBook.Save();
+            xlApp.Quit();
+
+            
+        }
+    }
+}

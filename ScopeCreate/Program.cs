@@ -1,0 +1,75 @@
+﻿using Microsoft.Office.Interop.Excel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
+
+namespace ScopeCreate
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Excel.Application xlApp = new Excel.Application();
+            Excel.Workbook xlWorkBook = xlApp.Workbooks.Open(@"C:\Users\Factory\Documents\scope\ControlesDegradesAvecDirections T2 2019 - Copie - Copie.xlsx");
+            Excel.Range oRng = null;
+
+            Excel.Worksheet worksheet1 = (xlWorkBook.Worksheets[1]);
+            Excel.Worksheet worksheet3 = (xlWorkBook.Worksheets[1]);
+            
+            worksheet1.Copy(worksheet3);
+            xlWorkBook.Worksheets[1].Columns["B"].Insert();
+            xlWorkBook.Worksheets[1].Columns["D"].Insert();
+            xlWorkBook.Worksheets[1].Columns["F"].Insert();
+            xlWorkBook.Worksheets[1].Columns["H"].Insert();
+            xlWorkBook.Worksheets[1].Columns["J"].Insert();
+            xlWorkBook.Worksheets[1].Columns["L"].Insert();
+            xlWorkBook.Worksheets[1].Columns["N"].Insert();
+            xlWorkBook.Worksheets[1].Columns["P"].Insert();
+
+            oRng = xlWorkBook.Worksheets[1].UsedRange;
+            calculateWorkSheet1(oRng, 1, 2);
+            //calculateWorkSheet1(oRng, 3, 4);
+            /*calculateWorkSheet1(oRng, 5, 6);
+            calculateWorkSheet1(oRng, 7, 8);
+            calculateWorkSheet1(oRng, 9, 10);
+            calculateWorkSheet1(oRng, 11, 12);
+            calculateWorkSheet1(oRng, 13, 14);*/
+
+            xlWorkBook.Saved = true; 
+            xlWorkBook.Save();
+            xlApp.Quit();
+
+            
+        }
+
+        public static void calculateWorkSheet1(Range Rng , int clCopier, int clColler)
+        {
+            int rw = Rng.Rows.Count; 
+            for(int rCnt = 3; rCnt <= rw; rCnt++)
+            {
+                if ((Rng.Cells[rCnt,1].Value != null))
+                {
+                    Rng.Cells[rCnt, 2].Value = Rng.Cells[rCnt, 1].Value.ToString();
+                }
+                else
+                {
+                    if(Rng.Cells[rCnt - 1, 2].Value != null) Rng.Cells[rCnt, 2].Value = Rng.Cells[rCnt-1, 2].Value.ToString();
+                }
+                Console.WriteLine("cellule :" + rCnt + "ligne : " + clCopier);
+
+                if ((Rng.Cells[rCnt, 3].Value != null))
+                {
+                    Rng.Cells[rCnt, 4].Value = Rng.Cells[rCnt, 3].Value.ToString();
+                }
+                else
+                {
+                    if(Rng.Cells[rCnt - 1, 4].Value != null) Rng.Cells[rCnt, 4].Value = Rng.Cells[rCnt - 1, 4].Value.ToString();
+                }
+                Console.WriteLine("cellule :" + rCnt + "ligne : " + clCopier);
+            }
+        }
+    }
+}
